@@ -1,0 +1,240 @@
+﻿.contact-hero {
+    background-color: #f8e1f4;
+    height: 30vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-bottom: 5rem;
+}
+
+.contact-hero-content h1 {
+    font-size: 4rem;
+    margin-bottom: 1.5rem;
+    color: var(--black);
+}
+
+.contact-hero-content p {
+    font-size: 1.8rem;
+    color: var(--grey1);
+}
+
+.contact-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 3rem;
+}
+
+.contact-main {
+    display: flex;
+    gap: 5rem;
+    margin-bottom: 8rem;
+}
+
+.contact-info {
+    flex: 1;
+}
+
+    .contact-info h2 {
+        font-size: 2.8rem;
+        margin-bottom: 2rem;
+        color: var(--black);
+        position: relative;
+        padding-bottom: 1rem;
+    }
+
+        .contact-info h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 80px;
+            height: 3px;
+            background-color: var(--green);
+        }
+
+.contact-details {
+    margin-bottom: 3rem;
+}
+
+.contact-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 2rem;
+}
+
+.contact-icon {
+    font-size: 2.5rem;
+    color: var(--green);
+    margin-right: 2rem;
+    margin-top: 0.5rem;
+}
+
+.contact-text h3 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    color: var(--black);
+}
+
+.contact-text p {
+    font-size: 1.6rem;
+    color: var(--grey1);
+    line-height: 1.6;
+}
+
+.social-links {
+    display: flex;
+    gap: 1.5rem;
+    margin-top: 3rem;
+}
+
+    .social-links a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 4rem;
+        height: 4rem;
+        background-color: var(--green);
+        color: white;
+        border-radius: 50%;
+        font-size: 2rem;
+        transition: all 0.3s ease;
+    }
+
+        .social-links a:hover {
+            background-color: var(--black);
+            transform: translateY(-3px);
+        }
+
+.contact-form {
+    flex: 1;
+    background-color: white;
+    padding: 4rem;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+    .contact-form h2 {
+        font-size: 2.8rem;
+        margin-bottom: 3rem;
+        color: var(--black);
+        position: relative;
+        padding-bottom: 1rem;
+    }
+
+        .contact-form h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 80px;
+            height: 3px;
+            background-color: var(--green);
+        }
+
+.form-group {
+    margin-bottom: 2rem;
+}
+
+    .form-group label {
+        display: block;
+        font-size: 1.6rem;
+        margin-bottom: 0.8rem;
+        color: var(--black);
+    }
+
+    .form-group input,
+    .form-group textarea {
+        width: 100%;
+        padding: 1.2rem 1.5rem;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        font-size: 1.6rem;
+        font-family: 'Roboto', sans-serif;
+        transition: border-color 0.3s ease;
+    }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: var(--green);
+            outline: none;
+        }
+
+    .form-group textarea {
+        resize: vertical;
+        min-height: 15rem;
+    }
+
+.submit-btn {
+    background-color: var(--green);
+    color: white;
+    border: none;
+    padding: 1.5rem 3rem;
+    font-size: 1.6rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+    .submit-btn:hover {
+        background-color: var(--black);
+    }
+
+.map-container {
+    height: 50rem;
+    margin-bottom: 8rem;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+    .map-container iframe {
+        width: 100%;
+        height: 100%;
+        border: none;
+    }
+
+@media only screen and (max-width: 768px) {
+    .contact-main {
+        flex-direction: column;
+    }
+
+    .contact-hero {
+        height: 25vh;
+    }
+
+    .contact-hero-content h1 {
+        font-size: 3rem;
+    }
+
+    .contact-hero-content p {
+        font-size: 1.6rem;
+    }
+
+    .contact-form {
+        padding: 3rem;
+    }
+
+    .map-container {
+        height: 35rem;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .contact-container {
+        padding: 0 2rem;
+    }
+
+    .contact-hero {
+        height: 20vh;
+    }
+
+    .contact-hero-content h1 {
+        font-size: 2.5rem;
+    }
+
+    .contact-form {
+        padding: 2rem;
+    }
+}

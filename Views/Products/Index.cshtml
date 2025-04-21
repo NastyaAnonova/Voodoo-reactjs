@@ -1,0 +1,41 @@
+﻿@using Shop.Models.Database.Models
+
+@section Styles {
+<link rel="stylesheet" href="~/StaticFiles/CSS/cards.css">
+}
+
+@model List<ProductModel>
+
+<section class="section all-products" id="products">
+    <div class="top container">
+        <h1>Все продукты</h1>
+        <form>
+            <select>
+                <option value="1">Не сортировать</option>
+                <option value="3">Сортировка по убыванию цены</option>
+                <option value="4">Сортировка по возрастанию цены</option>
+                <option value="5">Сортировка по скидке</option>
+            </select>
+            <span><i class="bx bx-chevron-down"></i></span>
+        </form>
+    </div>
+    <div class="product-center container">
+        @foreach (ProductModel product in Model) {
+            @await Html.PartialAsync("Product", product)
+        }
+    </div>
+</section>
+<section class="pagination">
+</section>
+
+<template id="card-template">
+    <li class="places__item card">
+        <img class="card__image" src="" alt="" />
+        <button type="button" class="card__delete-button"></button>
+        <div class="card__description">
+            <h2 class="card__title">
+            </h2>
+            <button type="button" class="card__like-button"></button>
+        </div>
+    </li>
+</template>

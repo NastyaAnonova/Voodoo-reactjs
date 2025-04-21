@@ -1,0 +1,477 @@
+﻿@{
+    Layout = null;
+}
+
+@using Shop.Models.ViewModels.Views
+@using Shop.Models.Database.Models
+@model AdminView
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Админ панель - Voodooo</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    <link rel="stylesheet" href="~/StaticFiles/CSS/admin.css">
+</head>
+<body>
+    <div class="sidebar">
+        <div class="logo">
+            <h2>Voodooo Admin</h2>
+        </div>
+        <ul class="menu">
+            <li class="active">
+                <a href="#dashboard">
+                    <i class='bx bxs-dashboard'></i>
+                    <span>Главная</span>
+                </a>
+            </li>
+            <li>
+                <a href="#products">
+                    <i class='bx bxs-package'></i>
+                    <span>Товары</span>
+                </a>
+            </li>
+            <li>
+                <a href="#orders">
+                    <i class='bx bxs-package'></i>
+                    <span>Заказы</span>
+                </a>
+            </li>
+            <li>
+                <a href="#discounts">
+                    <i class='bx bxs-discount'></i>
+                    <span>Скидки</span>
+                </a>
+            </li>
+            <li>
+                <a href="#customers">
+                    <i class='bx bxs-user'></i>
+                    <span>Клиенты</span>
+                </a>
+            </li>
+            <li>
+                <a href="#settings">
+                    <i class='bx bxs-cog'></i>
+                    <span>Настройки</span>
+                </a>
+            </li>
+            <li class="logout">
+                <a href="/logout">
+                    <i class='bx bx-log-out'></i>
+                    <span>Выйти</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Основной контент -->
+    <div class="main-content">
+        <!-- Шапка -->
+        <header>
+            <div class="header-title">
+                <h1>Панель управления</h1>
+            </div>
+            <div class="user-wrapper">
+                <img src="images/banner.png" width="40" height="40" alt="Admin">
+                <div>
+                    <h4>Администратор</h4>
+                    <small>@Model.Account.FirstName @Model.Account.LastName</small>
+                </div>
+            </div>
+        </header>
+
+        <!-- Дашборд -->
+        <main id="dashboard-content" class="content active">
+            <div class="cards">
+                <div class="card">
+                    <div>
+                        <h1>@Model.OrdersCount</h1>
+                        <span>Заказов</span>
+                    </div>
+                    <i class='bx bxs-package'></i>
+                </div>
+                <div class="card">
+                    <div>
+                        <h1>@Model.ProductsCount</h1>
+                        <span>Товаров</span>
+                    </div>
+                    <i class='bx bxs-tshirt'></i>
+                </div>
+                <div class="card">
+                    <div>
+                        <h1>@Model.DiscountCount</h1>
+                        <span>Скидок</span>
+                    </div>
+                    <i class='bx bxs-discount'></i>
+                </div>
+                <div class="card">
+                    <div>
+                        <h1>@Model.Income ₽</h1>
+                        <span>Доход</span>
+                    </div>
+                    <i class='bx bxs-wallet'></i>
+                </div>
+            </div>
+
+            <div class="tables">
+                <div class="last-orders">
+                    <div class="header">
+                        <h2>Последние заказы</h2>
+                        <a href="#orders" class="btn">Смотреть все</a>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Клиент</th>
+                                <th>Дата</th>
+                                <th>Сумма</th>
+                                <th>Статус</th>
+                                <th>Действия</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (OrderModel order in Model.LastOrders)
+                            {
+                                <tr>
+                                    <td>#@order.Id</td>
+                                    <td>@order.Account.FirstName @order.Account.LastName</td>
+                                    <td>@order.Date</td>
+                                    <td>@order.Amount ₽</td>
+                                    @switch (order.Status)
+                                    {
+                                        case OrderStatus.Delivered:
+                                            <td><span class="status completed">Доставлен</span></td>
+                                            break;
+                                        case OrderStatus.InProcessing:
+                                            <td><span class="status process">В обработке</span></td>
+                                            break;
+                                        case OrderStatus.AwaitingPayment:
+                                            <td><span class="status pending">Ожидает оплаты</span></td>
+                                            break;
+                                        case OrderStatus.Cancelled:
+                                            <td><span class="status canceled">Отменен</span></td>
+                                            break;
+                                        case OrderStatus.Sent:
+                                            <td><span class="status sent">Отправлен</span></td>
+                                            break;
+                                    }
+                                    <td><button class="action-btn view"><i class='bx bx-show'></i></button></td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="popular-products">
+                    <div class="header">
+                        <h2>Популярные товары</h2>
+                        <a href="#products" class="btn">Смотреть все</a>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Название</th>
+                                <th>Категория</th>
+                                <th>Цена</th>
+                                <th>Продажи</th>
+                                <th>Действия</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (ProductModel product in Model.PopularProducts)
+                            {
+                                <tr>
+                                    <td>#@product.Id</td>
+                                    <td>@product.Name</td>
+                                    <td>@product.Category.Name</td>
+                                    <td>@product.Price ₽</td>
+                                    <td>@product.PurchasedQuantity</td>
+                                    <td>
+                                        <button class="action-btn edit"><i class='bx bx-edit'></i></button>
+                                        <button class="action-btn delete"><i class='bx bx-trash'></i></button>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+
+        <!-- Управление товарами -->
+        <main id="products-content" class="content">
+            <div class="products-header">
+                <h2>Управление товарами</h2>
+                <button class="add-product-btn">+ Добавить товар</button>
+            </div>
+
+            <div class="products-actions">
+                <div class="search-box">
+                    <input type="text" placeholder="Поиск товаров...">
+                    <button><i class='bx bx-search'></i></button>
+                </div>
+                <div class="filter-box">
+                    <select>
+                        <option>Все категории</option>
+                        <option>Одежда</option>
+                        <option>Фигурки</option>
+                        <option>Аксессуары</option>
+                    </select>
+                    <select>
+                        <option>Сортировка</option>
+                        <option>По названию (А-Я)</option>
+                        <option>По названию (Я-А)</option>
+                        <option>По цене (↑)</option>
+                        <option>По цене (↓)</option>
+                    </select>
+                </div>
+            </div>
+
+            <table class="products-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Изображение</th>
+                        <th>Название</th>
+                        <th>Категория</th>
+                        <th>Цена</th>
+                        <th>Наличие</th>
+                        <th>Скидка</th>
+                        <th>Действия</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (ProductModel product in Model.Products)
+                    {
+                        <tr>
+                            <td>#@product.Id</td>
+                            <td><img src="@product.ImagePath" alt="@product.Name"></td>
+                            <td>@product.Name</td>
+                            <td>@product.Category.Name</td>
+                            <td>@product.Price ₽</td>
+                            @switch (product.Quantity)
+                            {
+                                case >10:
+                                    <td><span class="in-stock">В наличии</span></td>
+                                    break;
+                                case >0:
+                                    <td><span class="low-stock">Мало</span></td>
+                                    break;
+                                default:
+                                    <td><span class="out-of-stock">Нет в наличии</span></td>
+                                    break;
+                            }
+                            @if (product.Discount != null)
+                            {
+                                <td>@product.Discount.Percent %</td>
+                            } else
+                            {
+                                <td>-</td>
+                            }
+                            <td>
+                                <button class="action-btn edit"><i class='bx bx-edit'></i></button>
+                                <button class="action-btn delete"><i class='bx bx-trash'></i></button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+            <div class="pagination">
+                <button class="page-btn active">1</button>
+                <button class="page-btn">2</button>
+                <button class="page-btn">3</button>
+                <button class="page-btn">4</button>
+                <button class="page-btn">5</button>
+            </div>
+        </main>
+
+        <!-- Управление заказами -->
+        <main id="orders-content" class="content">
+            <div class="orders-header">
+                <h2>Управление заказами</h2>
+            </div>
+
+            <div class="orders-actions">
+                <div class="search-box">
+                    <input type="text" placeholder="Поиск заказов...">
+                    <button><i class='bx bx-search'></i></button>
+                </div>
+                <div class="filter-box">
+                    <select>
+                        <option>Все статусы</option>
+                        <option>Ожидает оплаты</option>
+                        <option>В обработке</option>
+                        <option>Отправлен</option>
+                        <option>Доставлен</option>
+                        <option>Отменен</option>
+                    </select>
+                    <input type="date" placeholder="Дата от">
+                    <input type="date" placeholder="Дата до">
+                </div>
+            </div>
+
+            <table class="orders-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Клиент</th>
+                        <th>Дата</th>
+                        <th>Сумма</th>
+                        <th>Статус</th>
+                        <th>Действия</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (OrderModel order in Model.Orders)
+                    {
+                        <tr>
+                            <td>#@order.Id</td>
+                            <td>@order.Account.FirstName @order.Account.LastName</td>
+                            <td>@order.Date</td>
+                            <td>@order.Amount ₽</td>
+                            <td>
+                                @switch (order.Status)
+                                {
+                                    case OrderStatus.Delivered:
+                                        <select class="status-select completed">
+                                            <option>Доставлен</option>
+                                            <option>Ожидает оплаты</option>
+                                            <option>В обработке</option>
+                                            <option>Отправлен</option>
+                                            <option>Отменен</option>
+                                        </select>
+                                        break;
+                                    case OrderStatus.InProcessing:
+                                        <select class="status-select process">
+                                            <option>В обработке</option>
+                                            <option>Доставлен</option>
+                                            <option>Ожидает оплаты</option>
+                                            <option>Отправлен</option>
+                                            <option>Отменен</option>
+                                        </select>
+                                        break;
+                                    case OrderStatus.AwaitingPayment:
+                                        <select class="status-select pending">
+                                            <option>Ожидает оплаты</option>
+                                            <option>Доставлен</option>
+                                            <option>В обработке</option>
+                                            <option>Отправлен</option>
+                                            <option>Отменен</option>
+                                        </select>
+                                        break;
+                                    case OrderStatus.Cancelled:
+                                        <select class="status-select canceled">
+                                            <option>Отменен</option>
+                                            <option>Доставлен</option>
+                                            <option>Ожидает оплаты</option>
+                                            <option>В обработке</option>
+                                            <option>Отправлен</option>
+                                        </select>
+                                        break;
+                                    case OrderStatus.Sent:
+                                        <select class="status-select sent">
+                                            <option>Отправлен</option>
+                                            <option>Доставлен</option>
+                                            <option>Ожидает оплаты</option>
+                                            <option>В обработке</option>
+                                            <option>Отменен</option>
+                                        </select>
+                                        break;
+                                }
+                            </td>
+                            <td>
+                                <button class="action-btn view"><i class='bx bx-show'></i></button>
+                                <button class="action-btn print"><i class='bx bx-printer'></i></button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+            <div class="pagination">
+                <button class="page-btn active">1</button>
+                <button class="page-btn">2</button>
+                <button class="page-btn">3</button>
+                <button class="page-btn">4</button>
+                <button class="page-btn">5</button>
+            </div>
+        </main>
+
+        <!-- Управление скидками -->
+        <main id="discounts-content" class="content">
+            <div class="discounts-header">
+                <h2>Управление скидками</h2>
+                <button class="add-discount-btn">+ Добавить скидку</button>
+            </div>
+
+            <div class="discounts-actions">
+                <div class="search-box">
+                    <input type="text" placeholder="Поиск скидок...">
+                    <button><i class='bx bx-search'></i></button>
+                </div>
+                <div class="filter-box">
+                    <select>
+                        <option>Все статусы</option>
+                        <option>Активные</option>
+                        <option>Неактивные</option>
+                        <option>Запланированные</option>
+                    </select>
+                </div>
+            </div>
+
+            <table class="discounts-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Название</th>
+                        <th>Размер</th>
+                        <th>Дата начала</th>
+                        <th>Дата окончания</th>
+                        <th>Статус</th>
+                        <th>Действия</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (DiscountModel discount in Model.Discounts)
+                    {
+                        <tr>
+                            <td>#@discount.Id</td>
+                            <td>@discount.Name</td>
+                            <td>@discount.Percent %</td>
+                            <td>@discount.Start</td>
+                            <td>@discount.End</td>
+                            @if (discount.Start > DateTime.UtcNow)
+                            {
+                                <td><span class="status planned">Запланирована</span></td>
+                            } else if (discount.Start < DateTime.UtcNow && discount.End > DateTime.UtcNow)
+                            {
+                                <td><span class="status active">Активна</span></td>
+                            } else
+                            {
+                                <td><span class="status inactive">Неактивна</span></td>
+                            }
+                            <td>
+                                <button class="action-btn edit"><i class='bx bx-edit'></i></button>
+                                <button class="action-btn delete"><i class='bx bx-trash'></i></button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+            <div class="pagination">
+                <button class="page-btn active">1</button>
+                <button class="page-btn">2</button>
+                <button class="page-btn">3</button>
+            </div>
+        </main>
+    </div>
+
+    <script src="~/StaticFiles/Scripts/admin.js"></script>
+</body>
+</html>

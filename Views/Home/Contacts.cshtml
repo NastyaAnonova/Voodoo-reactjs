@@ -1,0 +1,97 @@
+﻿@section Styles {
+    <link href="~/StaticFiles/CSS/contacts.css" rel="stylesheet" />
+}
+
+<section class="contact-hero">
+    <div class="contact-hero-content">
+        <h1>Свяжитесь с нами</h1>
+        <p>Мы всегда рады помочь и ответить на ваши вопросы</p>
+    </div>
+</section>
+
+<section class="contact-container">
+    <div class="contact-main">
+        <div class="contact-info">
+            <h2>Контактная информация</h2>
+
+            <div class="contact-details">
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="bx bx-map"></i>
+                    </div>
+                    <div class="contact-text">
+                        <h3>Адрес офиса</h3>
+                        <p>г. Ростов-на-Дону, ул. Тургеневская 10/6</p>
+                    </div>
+                </div>
+
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="bx bx-time"></i>
+                    </div>
+                    <div class="contact-text">
+                        <h3>Часы работы</h3>
+                        <p>Понедельник - Пятница: 10:00 - 20:00</p>
+                        <p>Суббота - Воскресенье: 11:00 - 18:00</p>
+                    </div>
+                </div>
+
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="bx bx-phone"></i>
+                    </div>
+                    <div class="contact-text">
+                        <h3>Телефоны</h3>
+                        <p>+7 (123) 456-78-90</p>
+                        <p>+7 (987) 654-32-10</p>
+                    </div>
+                </div>
+
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="bx bx-envelope"></i>
+                    </div>
+                    <div class="contact-text">
+                        <h3>Электронная почта</h3>
+                        <p>Voodoo@gmail.com</p>
+                    </div>
+                </div>
+            </div>
+
+            <h3>Мы в социальных сетях</h3>
+            <div class="social-links">
+                <a href="#"><i class="bx bxl-vk"></i></a>
+                <a href="#"><i class="bx bxl-telegram"></i></a>
+                <a href="#"><i class="bx bxl-instagram"></i></a>
+                <a href="#"><i class="bx bxl-youtube"></i></a>
+            </div>
+        </div>
+
+        <div class="contact-form">
+            <h2>Форма обратной связи</h2>
+            <form>
+                <div class="form-group">
+                    <label for="name">Ваше имя</label>
+                    <input type="text" id="name" placeholder="Как к вам обращаться?" required="">
+                </div>
+                <div class="form-group">
+                    <label for="email">Ваш email</label>
+                    <input type="email" id="email" placeholder="Для ответа на ваше обращение" required="">
+                </div>
+                <div class="form-group">
+                    <label for="subject">Тема сообщения</label>
+                    <input type="text" id="subject" placeholder="О чем вы хотите спросить?">
+                </div>
+                <div class="form-group">
+                    <label for="message">Ваше сообщение</label>
+                    <textarea id="message" placeholder="Напишите ваш вопрос или предложение..." required=""></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Отправить сообщение</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="map-container">
+        <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3A1a2b3c4d5e6f7g8h9i0j&amp;source=constructor" frameborder="0"></iframe>
+    </div>
+</section>

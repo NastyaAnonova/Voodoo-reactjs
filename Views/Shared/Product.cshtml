@@ -1,0 +1,23 @@
+﻿@using Shop.Models.Database.Models
+@model ProductModel
+
+<div class="product-item" id="product-@Model.Id">
+    <div class="overlay">
+        <a href="" class="product-thumb">
+            <img src="@Model.ImagePath" alt="" class="card__image" />
+        </a>
+        @if (Model.Discount != null)
+        {
+            <span class="discount">@Model.Discount.Percent ₽</span>
+        }
+    </div>
+    <div class="product-info">
+        <span class="card__title">@Model.Name. @Model.Category.Name</span>
+        <h4 class="card__price">@Model.Price ₽</h4>
+    </div>
+    <ul class="icons">
+        <li><i class="bx bx-heart"></i></li>
+        <li><i class="bx bx-search"></i></li>
+        <li><i class="bx bx-cart"></i></li>
+    </ul>
+</div>

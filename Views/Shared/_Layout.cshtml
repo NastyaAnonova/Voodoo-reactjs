@@ -1,0 +1,89 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css" />
+    <link rel="stylesheet" href="~/StaticFiles/CSS/styles.css" />
+    @RenderSection("Styles", required: false)
+    <title>Voodooo</title>
+</head>
+<body>
+    <header>
+        <div class="top-nav">
+            <div class="container d-flex">
+                <p>Почта: Voodooo@gmail.com</p>
+                <ul class="d-flex">
+                    <li><a href="/about">О нас</a></li>
+                    <li><a href="/contacts">Контакты</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="navigation">
+            <div class="nav-center container d-flex">
+                <a href="/" class="logo"><h1>Voodooo</h1></a>
+                <ul class="nav-list d-flex">
+                    <li class="nav-item">
+                        <a href="/" class="nav-link">Главная</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/products" class="nav-link">Магазин</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/about" class="nav-link">О нас</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/contacts" class="nav-link">Контакты</a>
+                    </li>
+                </ul>
+                <div class="icons d-flex">
+                    <a href="/profile" class="icon">
+                        <i class="bx bx-user"></i>
+                    </a>
+                    <div class="icon">
+                        <i class="bx bx-search"></i>
+                    </div>
+                    <div class="icon">
+                        <i class="bx bx-heart"></i>
+                        <span class="d-flex">0</span>
+                    </div>
+                    <a href="/cart" class="icon">
+                        <i class="bx bx-cart"></i>
+                        <span class="d-flex">0</span>
+                    </a>
+                </div>
+                <div class="hamburger">
+                    <i class="bx bx-menu-alt-left"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+    @RenderBody()
+    <footer class="footer">
+        <div class="row">
+            <div class="col d-flex">
+                <h4>ИНФОРМАЦИЯ</h4>
+                <a href="/about">О нас</a>
+                <a href="/contacts">Контакты</a>
+                <a href="">Shipping Guide</a>
+            </div>
+            <div class="col d-flex">
+                <h4>ССЫЛКИ</h4>
+                <a href="">Онлайн магазин</a>
+                <a href="">Сервис</a>
+                <a href="">Акции</a>
+                <a href="">Лучшие товары</a>
+            </div>
+            <div class="col d-flex">
+                <span><i class='bx bxl-facebook-square'></i></span>
+                <span><i class='bx bxl-instagram-alt'></i></span>
+                <span><i class='bx bxl-github'></i></span>
+                <span><i class='bx bxl-twitter'></i></span>
+                <span><i class='bx bxl-pinterest'></i></span>
+            </div>
+        </div>
+    </footer>
+    @RenderSection("Scripts", required: false)
+    <script src="~/StaticFiles/Scripts/cart.js"></script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+﻿@section Scripts {
+    <script src="~/StaticFiles/Scripts/login.js"></script>
+}
+
+<div class="container">
+    <div class="login-form">
+        <form action="" method="post" id="login">
+            <h1>Войти</h1>
+            <p>
+                Нет аккаунта?
+                <a href="/signup">Зарегестрироваться</a>
+            </p>
+
+            <p id="message"></p>
+
+            <label for="email">Email</label>
+            <input type="email" placeholder="email@example.ru" name="email" id="email" required />
+
+            <label for="password">Пароль</label>
+            <input type="password"
+                   placeholder="введите пароль"
+                   name="password"
+                   id="password"
+                   required />
+
+            <div class="buttons">
+                <button type="reset" class="cancelbtn">Отменить</button>
+                <button type="submit" class="signupbtn">Войти</button>
+            </div>
+        </form>
+    </div>
+</div>

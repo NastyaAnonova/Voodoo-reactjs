@@ -1,0 +1,50 @@
+﻿@section Scripts {
+    <script src="~/StaticFiles/Scripts/signup.js"></script>
+}
+
+<div class="container">
+    <div class="login-form">
+        <form action="" method="post" id="signup">
+            <h1>Регистрация</h1>
+            <p>
+                Заполните форму, чтобы создать аккаунт или
+                <a href="/login">Войти</a>
+            </p>
+
+            <p id="message"></p>
+
+            <label for="email">Email</label>
+            <input type="email" placeholder="email@example.ru" name="email" id="email" required />
+
+            <label for="password">Пароль</label>
+            <input type="password" placeholder="Введите пароль" name="password" id="password" required />
+
+            <label for="password-repeat">Повторите пароль</label>
+            <input type="password" placeholder="Повторите пароль" name="password-repeat" id="password-repeat" required />
+
+            <hr />
+
+            <label for="firstname">Имя</label>
+            <input type="text" placeholder="Иван" name="first-name" id="first-name" required />
+
+            <label for="lastname">Фамилия</label>
+            <input type="text" placeholder="Иванов" name="last-name" id="last-name" required />
+
+            <label for="phonenumber">Номер телефона</label>
+            <input type="tel" value="+7 " name="phone-number" id="phone-number" required />
+
+            <label for="address">Адрес</label>
+            <input type="text" placeholder="Г. Ростов-на-Дону, ул. Светлая, д. 31А" name="address" id="address" required />
+
+            <p>
+                Создавая аккаунт, вы соглашаетесь на
+                <a href="#">пользовательское соглашение</a>.
+            </p>
+
+            <div class="buttons">
+                <button type="reset" class="cancelbtn">Отменить</button>
+                <button type="submit" class="signupbtn">Зарегистрироваться</button>
+            </div>
+        </form>
+    </div>
+</div>

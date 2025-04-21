@@ -1,0 +1,124 @@
+﻿@using Shop.Models.Database.Models
+@using Shop.Models.ViewModels.Views
+
+@section Styles {
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Glide.js/3.4.1/css/glide.core.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Glide.js/3.4.1/css/glide.theme.css">
+}
+
+@section Scripts {
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Glide.js/3.4.1/glide.min.js"></script>
+<script src="~/StaticFiles/Scripts/slider.js"></script>
+<script src="~/StaticFiles/Scripts/index.js"></script>
+}
+
+@model MainView
+
+<div class="hero">
+    <div class="glide" id="glide_1">
+        <div class="glide__track" data-glide-el="track">
+            <ul class="glide__slides">
+                <li class="glide__slide">
+                    <div class="center">
+                        <div class="left">
+                            <span class="">2024 год</span>
+                            <h1 class="">НОВАЯ КОЛЛЕКЦИЯ!</h1>
+                            <p>
+                                Мерч и не только
+                            </p>
+                            <a href="#" class="hero-btn">КУПИТЬ СЕЙЧАС</a>
+                        </div>
+                        <div class="right">
+                            <img class="img1" src="~/StaticFiles/Images/hero-1.png" alt="">
+                        </div>
+                    </div>
+                </li>
+                <li class="glide__slide">
+                    <div class="center">
+                        <div class="left">
+                            <span>New Inspiration 2020</span>
+                            <h1>THE PERFECT MATCH!</h1>
+                            <p>Trending from men's and women's  style collection</p>
+                            <a href="#" class="hero-btn">SHOP NOW</a>
+                        </div>
+                        <div class="right">
+                            <img class="img2" src="~/StaticFiles/Images/hero-2.png" alt="">
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<section class="section category">
+    <div class="cat-center">
+        @foreach (CategoryModel category in Model.Categories) {
+            <div class="cat">
+                <img src="@category.ImagePath" alt="Изображения категории" />
+                <div>
+                    <p>
+                        @category.Name
+                    </p>
+                </div>
+            </div>
+        }
+    </div>
+</section>
+
+<section class="section new-arrival">
+    <div class="title">
+        <h1>Новинки</h1>
+    </div>
+
+    <div class="product-center">
+        @foreach (ProductModel product in Model.NewProducts)
+        {
+            @await Html.PartialAsync("Product", product)
+        }
+    </div>
+</section>
+
+
+<section class="section banner">
+    <div class="left">
+        <span class="trend">Трендовый дизайн</span>
+        <h1>НОВАЯ КОЛЛЕКЦИЯ 2024</h1>
+        <p>New Arrival <span class="color">Скидка 50%</span> Время ограниченно</p>
+        <a href="#" class="btn btn-1">Купить сейчас</a>
+    </div>
+    <div class="right">
+        <img src="~/StaticFiles/Images/banner.png" alt="">
+    </div>
+</section>
+
+<section class="section new-arrival">
+    <div class="title">
+        <h1>ПОПУЛЯРНО</h1>
+        <p>Лучшие позиции магазина</p>
+    </div>
+    <div class="product-center">
+        @foreach (ProductModel product in Model.PopularProducts)
+        {
+            @await Html.PartialAsync("Product", product)
+        }
+    </div>
+</section>
+
+<section class="section contact">
+    <div class="row">
+        <div class="col">
+            <h2>ПОДДЕРЖКА</h2>
+            <p>работаем 24/7, чтобы ваши покупки не терялись</p>
+            <a href="" class="btn btn-1">Контакты</a>
+        </div>
+        <div class="col">
+            <form action="">
+                <div>
+                    <input type="email" placeholder="mail@example.ru">
+                    <a href="">Отправить</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>

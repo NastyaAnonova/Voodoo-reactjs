@@ -1,0 +1,24 @@
+.card_nav {
+   display: flex;
+   flex-direction: row;
+   font-size: 2vw;
+   border: 1.5px solid black;
+   margin-left: 2vw;
+   padding: 0.6vw;
+   
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+}
+
+.card_nav:hover {
+    color: grey;
+    border-color: grey;
+}
+
+.card_nav:active {
+    color: rgb(199, 199, 199);
+    border-color: rgb(222, 222, 222);
+}
